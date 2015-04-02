@@ -10,7 +10,6 @@
 
 import sys
 import libs.requests as requests
-import tldextract
 from controller import *
 
 if __name__ == "__main__":

@@ -55,8 +55,6 @@ proxies = {
 	# "http": "http://user:pass@10.10.1.10:3128/",
 	# "https": "http://10.10.1.10:1080",
 	# "http": "http://127.0.0.1:8118", # TOR 洋葱路由器
-	# 'http': 'http://admin:admin*888@42.62.52.62:8080',
-	# 'https': 'https://admin:admin*888@42.62.52.62:8080'
 }
 
 # 随机HTTP头

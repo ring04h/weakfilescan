@@ -26,3 +26,8 @@ pip install lxml
 ``` shell
 pip install beautifulsoup4
 ```
+
+### 使用
+``` bash
+python wyspider.py http://wuyun.org
+```

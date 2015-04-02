@@ -5,3 +5,24 @@
 
 * 支持动态正则规则引擎
 * 自动分析与目标相关的一切信息进行关联扫描
+
+### 安装
+CentOS 6.* 7.* Linux
+* install setuptools, pip
+``` shell
+wget https://bootstrap.pypa.io/ez_setup.py -O - | python
+
+wget https://pypi.python.org/packages/source/p/pip/pip-6.0.8.tar.gz
+tar zvxf pip-6.0.8.tar.gz
+cd pip-6.0.8
+python setup.py install
+```
+* install lxml解析器
+``` shell
+yum install python-devel libxml2-devel libxslt-devel
+pip install lxml
+```
+* install beautifulsoup4
+``` shell
+pip install beautifulsoup4
+```

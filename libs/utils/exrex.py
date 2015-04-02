@@ -287,6 +287,7 @@ def sre_to_string(sre_obj, paren=True):
         elif i[0] == 'literal':
             ret += unichr(i[1])
         elif i[0] == 'category':
+            pass
             ret += REVERSE_CATEGORIES[i[1]]
         elif i[0] == 'any':
             ret += '.'

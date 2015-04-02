@@ -46,10 +46,10 @@ CATEGORIES = {'category_space'  : sorted(sre_parse.WHITESPACE)
              ,'category_any'    : [unichr(x) for x in range(32, 123)]
              }
 
-REVERSE_CATEGORIES = {vv[1]:k for k,v
-                      in sre_parse.CATEGORIES.items() for vv
-                      in v[1]
-                      if v[0] == 'in' and vv[0] == 'category'}
+# REVERSE_CATEGORIES = {vv[1]:k for k,v
+#                       in sre_parse.CATEGORIES.items() for vv
+#                       in v[1]
+#                       if v[0] == 'in' and vv[0] == 'category'}
 
 
 def comb(g, i):
@@ -287,8 +287,8 @@ def sre_to_string(sre_obj, paren=True):
         elif i[0] == 'literal':
             ret += unichr(i[1])
         elif i[0] == 'category':
+            # ret += REVERSE_CATEGORIES[i[1]]
             pass
-            ret += REVERSE_CATEGORIES[i[1]]
         elif i[0] == 'any':
             ret += '.'
         elif i[0] in 'branch':

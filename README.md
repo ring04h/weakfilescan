@@ -14,14 +14,10 @@ tar zvxf pip-6.0.8.tar.gz
 cd pip-6.0.8
 python setup.py install
 ```
-安装 lxml解析器
+安装 lxml解析器 & beautifulsoup4
 ``` shell
 yum install python-devel libxml2-devel libxslt-devel
-pip install lxml
-```
-安装 beautifulsoup4
-``` shell
-pip install beautifulsoup4
+pip install lxml beautifulsoup4
 ```
 
 ### 使用

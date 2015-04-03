@@ -4,6 +4,29 @@
 * 支持动态正则规则引擎
 * 自动分析与目标相关的一切信息进行关联扫描
 
+## 字典支持规则
+#### 规则使用简介
+* DATE (日期类型)
+> {date=类型#长度$step:开始-结束}$
+``` python
+{date=year:2010-2015}$ # 年
+```
+[2010,2011,2012,2013,2014,2015]
+* INT (整数)
+> {int=类型#长度$step:开始-结束}$
+* STR (字符类型)
+> {str=类型#长度$step:开始-结束}$
+* RE (正则引擎)
+> {re=引擎名称:正则表达式}$
+``` python
+{re=exrex:[0-9]}$
+[0,1,2,3,4,5,6,7,8,9]
+{re=exrex:(a|A)dmin[0-9]}$
+[u'admin0',u'admin1',u'admin2',u'admin3',u'admin4',u'admin5',u'admin6',u'admin7',u'admin8',u'admin9',
+ u'Admin0',u'Admin1',u'Admin2',u'Admin3',u'Admin4',u'Admin5',u'Admin6',u'Admin7',u'Admin8',u'Admin9']
+```
+
+
 ## 安装
 #### CentOS 6.* 7.* Linux
 安装 setuptools, pip

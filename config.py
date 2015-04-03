@@ -15,9 +15,9 @@ filename_dict = './dict/filename.lst'
 package_ext_dict = './dict/package_ext.lst'
 tempfile_ext_dict = './dict/tmpfile_ext.lst'
 
-# extion = './dict/filename.lst'
-# 判断文件或目录存在的状态吗
-exclude_status = [200,403]
+# 判断文件或目录存在的状态码，多个以逗号隔开
+# exclude_status = [200,403]
+exclude_status = [200]
 
 # 默认扩展名
 default_extion = sys.argv[2] if len(sys.argv) == 3 else 'php'
@@ -30,7 +30,7 @@ sqlfile = ['data','install','web','user', 'members']
 sqlfile_ext = ['.sql','.bak','.sql.tar.gz','.sql.zip','.sql.rar']
 
 # 线程数
-threads_count = 10
+threads_count = 32
 
 # -------------------------------------------------
 # requests 配置项

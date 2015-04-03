@@ -30,7 +30,7 @@ def get_baseurl(link):
 		baseurl = '%s%s' % (split_url[0], netloc)
 		return baseurl
 
-def http_request_get(url, body_content_workflow=False):
+def http_request_get(url, body_content_workflow=False, allow_redirects=allow_redirects):
 	try:
 		result = requests.get(url, 
 			stream=body_content_workflow, 
@@ -42,7 +42,7 @@ def http_request_get(url, body_content_workflow=False):
 	except Exception, e:
 		return None
 
-def http_request_post(url, payload, body_content_workflow=False):
+def http_request_post(url, payload, body_content_workflow=False, allow_redirects=allow_redirects):
 	"""
 		payload = {'key1': 'value1', 'key2': 'value2'}
 	"""
@@ -58,6 +58,10 @@ def http_request_post(url, payload, body_content_workflow=False):
 	except Exception, e:
 		return None
 
+def checksite_isalive(siteurl):
+	result = http_request_get(siteurl, allow_redirects=False)
+	return result
+
 def checksite_possibility(siteurl): # 检查可能性
     temp_weburls = [
         '/ea63a430b109194d/',
@@ -68,7 +72,7 @@ def checksite_possibility(siteurl): # 检查可能性
 
     req_result = {}
     for tempurl in temp_weburls:
-        httpres = http_request_get(siteurl.rstrip('/')+tempurl)
+        httpres = http_request_get(siteurl.rstrip('/')+tempurl, allow_redirects=False)
         is_redirect = True if len(httpres.history) > 0 else False
         req_result[tempurl] = {
             'status_code' : httpres.status_code,

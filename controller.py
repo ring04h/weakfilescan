@@ -75,25 +75,29 @@ def start_wyspider(siteurl): # 启动爬虫和fuzz类
 
 	possibility_info = {} # 服务端容错处理机制信息
 	for httpurl in possibility_urls.keys(): # 清空无法做出正常判断的服务器
-		possibility = checksite_possibility(httpurl)
-		if not possibility['considered']: # 服务端配置了容错处理，fuzz规则无法判断
+		if not checksite_isalive(httpurl): # 纯http请求，返回资源为None，代表出错
 			del possibility_urls[httpurl]
 		else:
-			possibility_info[httpurl] = possibility
+			possibility = checksite_possibility(httpurl)
+			if not possibility['considered']: # 服务端配置了容错处理，fuzz规则无法判断
+				del possibility_urls[httpurl]
+			else:
+				possibility_info[httpurl] = possibility
 
-	siteurl_possibility = checksite_possibility(siteurl)
-	if siteurl_possibility['considered']: # 服务端配置了容错处理，fuzz规则无法判断
-		# 根目录 fuzz 对象列表生成
-		possibility_info[siteurl] = siteurl_possibility
-		for root_fuzz_dir in fuzz_webdirs:
-			url = siteurl.rstrip('/')+root_fuzz_dir
-			if not fuzzdir_request_set.has_key(siteurl):
-				fuzzdir_request_set[siteurl] = []
-			fuzzdir_request_set[siteurl].append(url)
-		rootdir = siteurl.rstrip('/') # 压入网站根目录
-		fuzzdir_request_set[siteurl].append(rootdir) # 压入根目录其因变量文件
-		urlgenerator_obj = UrlGenerator(rootdir, fuzz_bak, fuzz_tmp, extion=default_extion)
-		possibility_files[siteurl].extend(urlgenerator_obj.generator())
+	if checksite_isalive(siteurl): # 根服务器是存活的
+		siteurl_possibility = checksite_possibility(siteurl)
+		if siteurl_possibility['considered']: # 服务端配置了容错处理，fuzz规则无法判断
+			# 根目录 fuzz 对象列表生成
+			possibility_info[siteurl] = siteurl_possibility
+			for root_fuzz_dir in fuzz_webdirs:
+				url = siteurl.rstrip('/')+root_fuzz_dir
+				if not fuzzdir_request_set.has_key(siteurl):
+					fuzzdir_request_set[siteurl] = []
+				fuzzdir_request_set[siteurl].append(url)
+			rootdir = siteurl.rstrip('/') # 压入网站根目录
+			fuzzdir_request_set[siteurl].append(rootdir) # 压入根目录其因变量文件
+			urlgenerator_obj = UrlGenerator(rootdir, fuzz_bak, fuzz_tmp, extion=default_extion)
+			possibility_files[siteurl].extend(urlgenerator_obj.generator())
 
 	for http_siteurl in fuzzdir_request_set.keys():
 		# 生成向HttpFuzzEnginer传递的目录URL列表
@@ -124,11 +128,14 @@ def start_wyspider(siteurl): # 启动爬虫和fuzz类
 			possibility_files[httpurl].append(fuzzfile)
 
 	for http_fileurl in possibility_files.keys(): # 清空无法做出正常判断的服务器
-		possibility = checksite_possibility(http_fileurl)
-		if not possibility['considered']: # 服务端配置了容错处理，fuzz规则无法判断
+		if not checksite_isalive(http_fileurl): # 纯http请求，返回资源为None，代表出错
 			del possibility_files[http_fileurl]
 		else:
-			possibility_info[http_fileurl] = possibility
+			possibility = checksite_possibility(http_fileurl)
+			if not possibility['considered']: # 服务端配置了容错处理，fuzz规则无法判断
+				del possibility_files[http_fileurl]
+			else:
+				possibility_info[http_fileurl] = possibility
 
 	for http_fileurl in possibility_files.keys():
 		request_files = list(set(possibility_files[http_fileurl]))

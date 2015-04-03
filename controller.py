@@ -17,8 +17,8 @@ sys.setdefaultencoding('utf-8')
 
 def start_wyspider(siteurl): # 启动爬虫和fuzz类
 	# 目标赋值
-	if not siteurl.startswith('http://'):
-		siteurl = 'http://%s' % siteurl
+	if "://" not in siteurl:
+		siteurl = 'http://%s' % siteurl.rstrip('/')
 	siteurl = siteurl.rstrip('/')
 	basedomain = get_basedomain(siteurl)
 

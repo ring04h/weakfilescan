@@ -31,26 +31,32 @@ def get_baseurl(link):
 		return baseurl
 
 def http_request_get(url, body_content_workflow=False):
-	result = requests.get(url, 
-		stream=body_content_workflow, 
-		headers=headers, 
-		timeout=timeout, 
-		proxies=proxies,
-		allow_redirects=allow_redirects)
-	return result
+	try:
+		result = requests.get(url, 
+			stream=body_content_workflow, 
+			headers=headers, 
+			timeout=timeout, 
+			proxies=proxies,
+			allow_redirects=allow_redirects)
+		return result
+	except Exception, e:
+		return None
 
 def http_request_post(url, payload, body_content_workflow=False):
 	"""
 		payload = {'key1': 'value1', 'key2': 'value2'}
 	"""
-	result = requests.post(url, 
-		data=payload, 
-		headers=headers, 
-		stream=body_content_workflow, 
-		timeout=timeout, 
-		proxies=proxies,
-		allow_redirects=allow_redirects)
-	return result
+	try:
+		result = requests.post(url, 
+			data=payload, 
+			headers=headers, 
+			stream=body_content_workflow, 
+			timeout=timeout, 
+			proxies=proxies,
+			allow_redirects=allow_redirects)
+		return result
+	except Exception, e:
+		return None
 
 def checksite_possibility(siteurl): # 检查可能性
     temp_weburls = [

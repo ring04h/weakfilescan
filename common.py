@@ -117,10 +117,10 @@ def checksite_possibility(siteurl): # 检查可能性
     if req_result[file1]['request'] == req_result[file2]['request']:
         possibility -= 10 # 返回的请求url结果一样
 
-    if refer_to_val < 50 and possibility < 65:
-        return {'considered':False, 'possibility':possibility, 'refer_to_val':refer_to_val}
-    else:
+    if refer_to_val > 50 and possibility > 60:
         return {'considered':True, 'possibility':possibility, 'refer_to_val':refer_to_val}
+    else:
+        return {'considered':False, 'possibility':possibility, 'refer_to_val':refer_to_val}
 
 def get_segments(url):
 	url_webdirs = []

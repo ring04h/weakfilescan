@@ -22,7 +22,7 @@ exclude_status = [200,403]
 default_extion = 'php'
 
 # 判断文件是否存在正则
-page_not_found_reg = r'404|not found|不存在|未找到'
+page_not_found_reg = r'404|(n|N)ot\ (f|F)ound|不存在|未找到'
 
 # 数据库文件
 sqlfile = ['data','install','web','user', 'members']

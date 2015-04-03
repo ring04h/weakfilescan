@@ -1,2 +1,7 @@
+<<<<<<< HEAD
 lxml
 beautifulsoup
+=======
+beautifulsoup4
+lxml
+>>>>>>> origin/master

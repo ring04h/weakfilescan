@@ -1,6 +1,7 @@
 # encoding: utf-8
 # 全局配置文件
 
+import sys
 import random
 
 # -------------------------------------------------
@@ -19,7 +20,7 @@ tempfile_ext_dict = './dict/tmpfile_ext.lst'
 exclude_status = [200,403]
 
 # 默认扩展名
-default_extion = 'php'
+default_extion = sys.argv[2] if len(sys.argv) == 3 else 'php'
 
 # 判断文件是否存在正则
 page_not_found_reg = r'404|(n|N)ot\ (f|F)ound|不存在|未找到|Error'

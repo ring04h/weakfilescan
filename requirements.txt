@@ -1,14 +1,2 @@
-requests
-simplejson
-tldextract
-beautifulsoup
-urlparse
 lxml
-yum install python-devel libxml2-devel libxslt-devel
-
-wget https://pypi.python.org/packages/source/p/pip/pip-6.0.8.tar.gz
-tar zvxf pip-6.0.8.tar.gz
-cd pip-6.0.8
-python setup.py install
-
-wget https://bootstrap.pypa.io/ez_setup.py -O - | python
+beautifulsoup

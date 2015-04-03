@@ -123,6 +123,13 @@ def start_wyspider(siteurl): # 启动爬虫和fuzz类
 				possibility_files[httpurl] = []
 			possibility_files[httpurl].append(fuzzfile)
 
+	for http_fileurl in possibility_files.keys(): # 清空无法做出正常判断的服务器
+		possibility = checksite_possibility(http_fileurl)
+		if not possibility['considered']: # 服务端配置了容错处理，fuzz规则无法判断
+			del possibility_files[http_fileurl]
+		else:
+			possibility_info[http_fileurl] = possibility
+
 	for http_fileurl in possibility_files.keys():
 		request_files = list(set(possibility_files[http_fileurl]))
 		refer_to_val = possibility_info[http_fileurl]['refer_to_val']

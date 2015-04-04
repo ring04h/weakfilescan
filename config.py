@@ -18,7 +18,7 @@ exclude_status = [200]
 # 默认扩展名
 default_extion = sys.argv[2] if len(sys.argv) == 3 else 'php'
 
-# 判断文件是否存在正则
+# 判断文件是否存在正则，如果页面存在如下定义的内容，将url从结果中剔除
 page_not_found_reg = r'404|[nN]ot [fF]ound|不存在|未找到|Error'
 
 # 数据库文件

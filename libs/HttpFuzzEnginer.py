@@ -33,12 +33,11 @@ class FuzzEnginer(object):
 					if results.status_code in exclude_status:
 						print "[%s] %s => %s" % (results.status_code, url, results.url) # 客户端调试信息
 						# 加入是否为备份文件结尾判断
-						if results.headers.get('content-length'):
-							# 存在content-length属性
+						if results.headers.get('content-length'): # 存在content-length属性
 							is_redirect = True if len(results.history) > 0 else False
 							if not is_redirect: # 未发生url跳转
 								# 如果返回了content-length属性，同时大小<100KB，加入404错误定义检测 1000 = 1k, 100kb = 100000
-								if results.headers.get('content-length') < 100000:
+								if int(results.headers.get('content-length')) < 100000:
 									regex = re.compile(page_not_found_reg)
 									if not regex.findall(results.text): # print '找到错误定义，成功返回404信息'
 										resources[results.status_code][url] = {'is_redirect':is_redirect,'history':results.history,'request':results.url}

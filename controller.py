@@ -151,6 +151,14 @@ def start_wyspider(siteurl): # 启动爬虫和fuzz类
 	print '* scan complete...'
 	print '-' * 50
 
+	# 误报结果统计清洗
+	for httpsite in existing_files.keys():
+		if len(existing_files[httpsite]) > resulst_cnt_val:
+			existing_files[httpsite] = ['misdescription cleaned']
+	for httpsite in possibility_urls.keys():
+		if len(possibility_urls[httpsite]) > resulst_cnt_val:
+			possibility_urls[httpsite] = ['misdescription cleaned']
+
 	return {'dirs':possibility_urls,'files':existing_files}
 
 

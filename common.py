@@ -18,9 +18,12 @@ if allow_http_session:
 
 def get_basedomain(url):
 	try:
-		# return urlparse.urlparse(url).netloc
-		return extract(url).registered_domain
-		# return extract(url).domain # 更加有关联性的处理方法
+		if basedomain == 1:
+			return urlparse.urlparse(url).netloc
+		elif basedomain == 2:
+			return extract(url).registered_domain
+		elif basedomain == 3:
+			return extract(url).domain # 更加有关联性的处理方法
 	except Exception, e:
 		pass
 

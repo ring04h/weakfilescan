@@ -11,6 +11,12 @@ filename_dict = './dict/filename.lst'
 package_ext_dict = './dict/package_ext.lst'
 tempfile_ext_dict = './dict/tmpfile_ext.lst'
 
+# 扫描域名策略
+# 1 = 和域名全称相关的: 包含 job.wooyun.org
+# 2 = 和主域名相关的: 包含 wooyun.org
+# 3 = 和域名的名字有关的: 包含 wooyun
+basedomain = 1
+
 # 判断文件或目录存在的状态码，多个以逗号隔开
 # exclude_status = [200,403]
 exclude_status = [200]

@@ -50,7 +50,7 @@ class FuzzEnginer(object):
 							is_redirect = True if len(results.history) > 0 else False
 							resources[results.status_code][url] = {'is_redirect':is_redirect,'history':results.history,'request':results.url}
 				except Exception, e: # 队列阻塞
-					# print e 
+					# print e
 					break
 
 	def start(self):

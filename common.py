@@ -40,7 +40,8 @@ def http_request_get(url, body_content_workflow=False, allow_redirects=allow_red
 			allow_redirects=allow_redirects)
 		return result
 	except Exception, e:
-		return None
+		# 返回空的requests结果对象
+		return requests.models.Response()
 
 def http_request_post(url, payload, body_content_workflow=False, allow_redirects=allow_redirects):
 	"""
@@ -56,11 +57,15 @@ def http_request_post(url, payload, body_content_workflow=False, allow_redirects
 			allow_redirects=allow_redirects)
 		return result
 	except Exception, e:
-		return None
+		# 返回空的requests结果对象
+		return requests.models.Response()
 
 def checksite_isalive(siteurl):
 	result = http_request_get(siteurl, allow_redirects=False)
-	return result
+	if result.status_code: # 存在状态码
+		return True
+	else:
+		return False
 
 def checksite_possibility(siteurl): # 检查可能性
     temp_weburls = [

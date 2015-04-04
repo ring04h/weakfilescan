@@ -30,6 +30,9 @@ page_not_found_reg = r'404|[nN]ot [fF]ound|不存在|未找到|Error'
 # 检测返回的结果集条数限制，超过多少条判定为误报
 resulst_cnt_val = 30
 
+# 是否开启https服务器的证书校验
+allow_ssl_verify = False
+
 # 数据库文件
 sqlfile = ['data','install','web','user', 'members']
 sqlfile_ext = ['.sql','.bak','.sql.tar.gz','.sql.zip','.sql.rar']

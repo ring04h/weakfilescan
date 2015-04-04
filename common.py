@@ -41,7 +41,8 @@ def http_request_get(url, body_content_workflow=False, allow_redirects=allow_red
 			headers=headers, 
 			timeout=timeout, 
 			proxies=proxies,
-			allow_redirects=allow_redirects)
+			allow_redirects=allow_redirects,
+			verify=allow_ssl_verify)
 		return result
 	except Exception, e:
 		# 返回空的requests结果对象
@@ -58,7 +59,8 @@ def http_request_post(url, payload, body_content_workflow=False, allow_redirects
 			stream=body_content_workflow, 
 			timeout=timeout, 
 			proxies=proxies,
-			allow_redirects=allow_redirects)
+			allow_redirects=allow_redirects,
+			verify=allow_ssl_verify)
 		return result
 	except Exception, e:
 		# 返回空的requests结果对象

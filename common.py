@@ -9,6 +9,7 @@ import threading
 from bs4 import BeautifulSoup
 from libs.tldextract import extract, TLDExtract
 import libs.requests as requests
+import libs.requests as __requests__
 from libs.FuzzUrlGenerator import UrlGenerator
 from libs.UrlSplitParser import UrlSplitParser
 
@@ -41,7 +42,7 @@ def http_request_get(url, body_content_workflow=False, allow_redirects=allow_red
 		return result
 	except Exception, e:
 		# 返回空的requests结果对象
-		return requests.models.Response()
+		return __requests__.models.Response()
 
 def http_request_post(url, payload, body_content_workflow=False, allow_redirects=allow_redirects):
 	"""
@@ -58,7 +59,7 @@ def http_request_post(url, payload, body_content_workflow=False, allow_redirects
 		return result
 	except Exception, e:
 		# 返回空的requests结果对象
-		return requests.models.Response()
+		return __requests__.models.Response()
 
 def checksite_isalive(siteurl):
 	result = http_request_get(siteurl, allow_redirects=False)

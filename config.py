@@ -4,10 +4,6 @@
 import sys
 import random
 
-# -------------------------------------------------
-# 最好完成一个正则解析解, 用正则来生成字典
-# -------------------------------------------------
-
 # 字典来自文件列表
 directory_dict = './dict/directory.lst'
 directory_common_dict = './dict/directory_common.lst'

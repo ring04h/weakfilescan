@@ -72,7 +72,7 @@ def checksite_possibility(siteurl): # 检查可能性
 
     req_result = {}
     for tempurl in temp_weburls:
-        httpres = http_request_get(siteurl.rstrip('/')+tempurl, allow_redirects=False)
+        httpres = http_request_get(siteurl.rstrip('/')+tempurl)
         is_redirect = True if len(httpres.history) > 0 else False
         req_result[tempurl] = {
             'status_code' : httpres.status_code,

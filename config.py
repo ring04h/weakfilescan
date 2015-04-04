@@ -19,7 +19,7 @@ exclude_status = [200]
 default_extion = sys.argv[2] if len(sys.argv) == 3 else 'php'
 
 # 判断文件是否存在正则
-page_not_found_reg = r'404|(n|N)ot\ (f|F)ound|不存在|未找到|Error'
+page_not_found_reg = r'404|[nN]ot [fF]ound|不存在|未找到|Error'
 
 # 数据库文件
 sqlfile = ['data','install','web','user', 'members']

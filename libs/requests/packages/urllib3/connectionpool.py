@@ -727,11 +727,12 @@ class HTTPSConnectionPool(HTTPConnectionPool):
             conn.connect()
 
         if not conn.is_verified:
-            warnings.warn((
-                'Unverified HTTPS request is being made. '
-                'Adding certificate verification is strongly advised. See: '
-                'https://urllib3.readthedocs.org/en/latest/security.html'),
-                InsecureRequestWarning)
+            pass
+            # warnings.warn((
+            #     'Unverified HTTPS request is being made. '
+            #     'Adding certificate verification is strongly advised. See: '
+            #     'https://urllib3.readthedocs.org/en/latest/security.html'),
+            #     InsecureRequestWarning)
 
 
 def connection_from_url(url, **kw):

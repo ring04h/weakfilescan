@@ -142,6 +142,17 @@ def get_segments(url):
 		url_webdirs.append(parser_obj.baseurl + segment)
 	return url_webdirs
 
+def get_first_segment(url):
+	pathobj = urlparse.urlparse(url)
+	path = pathobj.path.replace('//','/')
+	if len(path.split('/')) < 3:
+		return '/'
+		# return pathobj.scheme+'://'+pathobj.netloc+'/'
+	else:
+		segment = path.split('/')[1]
+		return '/'+segment+'/'
+		# return pathobj.scheme+'://'+pathobj.netloc+'/'+segment+'/'
+
 class LinksParser(object):
 	"""docstring for link_parser"""
 	def __init__(self, html_content):

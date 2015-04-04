@@ -144,8 +144,11 @@ def start_wyspider(siteurl): # 启动爬虫和fuzz类
 		for status_code in httpfuzz_result: # 分析多线程fuzz的结果
 			for fileurl in httpfuzz_result[status_code].keys():
 				if not existing_files.has_key(http_fileurl):
-					existing_files[http_fileurl] = []
-				existing_files[http_fileurl].append(fileurl)
+					existing_files[http_fileurl] = {}
+				first_segment = get_first_segment(fileurl) # 获取文件的1级目录名称，并为结果分类
+				if not existing_files[http_fileurl].has_key(first_segment):
+					existing_files[http_fileurl][first_segment] = []
+				existing_files[http_fileurl][first_segment].append(fileurl)
 
 	print '-' * 50
 	print '* scan complete...'
@@ -153,8 +156,10 @@ def start_wyspider(siteurl): # 启动爬虫和fuzz类
 
 	# 误报结果统计清洗
 	for httpsite in existing_files.keys():
-		if len(existing_files[httpsite]) > resulst_cnt_val:
-			existing_files[httpsite] = ['misdescription cleaned']
+		for first_segment in existing_files[httpsite].keys():
+			if len(existing_files[httpsite][first_segment]) > resulst_cnt_val:
+				existing_files[httpsite][first_segment] = ['misdescription cleaned']
+
 	for httpsite in possibility_urls.keys():
 		if len(possibility_urls[httpsite]) > resulst_cnt_val:
 			possibility_urls[httpsite] = ['misdescription cleaned']

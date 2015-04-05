@@ -12,17 +12,18 @@ package_ext_dict = './dict/package_ext.lst'
 tempfile_ext_dict = './dict/tmpfile_ext.lst'
 
 # 扫描域名策略
-# 1 = 和域名全称相关的: 包含 job.wooyun.org
-# 2 = 和主域名相关的: 包含 wooyun.org
-# 3 = 和域名的名字有关的: 包含 wooyun
+# 1 = 和域名全称相关: 包含 job.wooyun.org
+# 2 = 和主域名相关: 包含 wooyun.org
+# 3 = 和域名的名字相关: 包含 wooyun
 basedomain = 2
 
 # 判断文件或目录存在的状态码，多个以逗号隔开
 # exclude_status = [200,403]
 exclude_status = [200]
 
-# 默认扩展名
-default_extion = sys.argv[2] if len(sys.argv) == 3 else 'php'
+# 预设默认扩展名
+custom_extion = 'php' # 自定义扩展名
+default_extion = sys.argv[2] if len(sys.argv) == 3 else custom_extion
 
 # 判断文件是否存在正则，如果页面存在如下定义的内容，将url从结果中剔除
 page_not_found_reg = r'404|[nN]ot [fF]ound|不存在|未找到|Error'

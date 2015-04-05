@@ -1,6 +1,6 @@
 # weakfilescan
-WeakFileScan是一款基于爬虫，动态收集扫描目标相关信息后，基于目标信息进行二次整理形成字典规则，利用动态规则的多线程敏感信息泄露检测工具，该工具支持多种个性化定制选项，包括：
-* 规则字典多样化定义
+WeakFileScan是一款基于爬虫，动态收集扫描目标相关信息后，基于目标信息进行二次整理形成字典规则引擎，利用动态规则的多线程敏感信息泄露检测工具，该工具支持多种个性化定制选项，包括：
+* 规则字典多样化定义（支持正则）
 * 扫描域名策略（和域名全称相关, 和主域名相关, 和域名的名字相关）
 * 自定义HTTP状态码
 * 支持动态配置HTTP脚本扩展名
@@ -16,11 +16,31 @@ WeakFileScan是一款基于爬虫，动态收集扫描目标相关信息后，�
 * 动态代理列表配置（支持TOR）
 * HTTP头自定义
 
-更多使用详情参照 /config.py 
+更多使用详情参照 [/config.py](https://github.com/ring04h/weakfilescan/blob/master/config.py)
 
 # 快速开始
 ```
-[root@localhost weakfilescan]# python wyspider.py http://wuyun.org
+[root@localhost weakfilescan]# python wyspider.py http://wuyun.org php
+--------------------------------------------------
+* scan http://wuyun.org start
+--------------------------------------------------
+[200] http://wuyun.org => http://wuyun.org/
+[200] http://wuyun.org/wuyun.tar.gz => http://wuyun.org/wuyun.tar.gz
+--------------------------------------------------
+* scan complete...
+--------------------------------------------------
+{
+  "dirs": {
+    "http://wuyun.org": [
+      "http://wuyun.org"
+    ]
+  }, 
+  "files": {
+    "http://wuyun.org": [
+      "http://wuyun.org/wuyun.tar.gz"
+    ]
+  }
+}
 ```
 
 * 支持动态正则规则引擎
@@ -64,7 +84,6 @@ WeakFileScan是一款基于爬虫，动态收集扫描目标相关信息后，�
  u'Admin0',u'Admin1',u'Admin2',u'Admin3',u'Admin4',u'Admin5',u'Admin6',u'Admin7',u'Admin8',u'Admin9']
 ```
 
-
 ## 安装
 #### CentOS 6.* 7.* Linux
 安装 setuptools, pip
@@ -79,29 +98,4 @@ python setup.py install
 ``` shell
 yum install python-devel libxml2-devel libxslt-devel
 pip install lxml beautifulsoup4
-```
-
-### 使用
-``` shell
-[root@localhost weakfilescan]# python wyspider.py http://wuyun.org
---------------------------------------------------
-* scan http://wuyun.org start
---------------------------------------------------
-[200] http://wuyun.org => http://wuyun.org/
-[200] http://wuyun.org/wuyun.tar.gz => http://wuyun.org/wuyun.tar.gz
---------------------------------------------------
-* scan complete...
---------------------------------------------------
-{
-  "dirs": {
-    "http://wuyun.org": [
-      "http://wuyun.org"
-    ]
-  }, 
-  "files": {
-    "http://wuyun.org": [
-      "http://wuyun.org/wuyun.tar.gz"
-    ]
-  }
-}
 ```

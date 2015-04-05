@@ -15,7 +15,13 @@ WeakFileScan是一款基于爬虫，动态收集扫描目标相关信息后，�
 * 是否允许随机X-Forwarded-For
 * 动态代理列表配置（支持TOR）
 * HTTP头自定义
+
 更多使用详情参照 /config.py 
+
+# 快速开始
+```
+[root@localhost weakfilescan]# python wyspider.py http://wuyun.org
+```
 
 * 支持动态正则规则引擎
 * 自动分析与目标相关的一切信息进行关联扫描

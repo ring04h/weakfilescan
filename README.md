@@ -19,7 +19,7 @@
 更多使用详情参照 [/config.py](https://github.com/ring04h/weakfilescan/blob/master/config.py)
 
 # 快速开始
-```
+``` shell
 python wyspider.py http://wuyun.org php
 ```
 
@@ -147,35 +147,6 @@ python wyspider.py http://wuyun.org php
 ``` python
 {date=mon_day_year:01012015-04012015}$
 [01012015, 112015, 01122015, 1122015, ‘...’, 04012015]
-```
-
-
-
-```
-
-* INT (整数)
-支持如下三种类型
-* 
-```
-{int=类型#长度$step:开始-结束}$
-```
-
-* STR (字符类型)
-
-```
-{str=类型#长度$step:开始-结束}$
-```
-
-* RE (正则引擎)
-
-{re=引擎名称:正则表达式}$
-
-``` python
-{re=exrex:[0-9]}$
-[0,1,2,3,4,5,6,7,8,9]
-{re=exrex:(a|A)dmin[0-9]}$
-[u'admin0',u'admin1',u'admin2',u'admin3',u'admin4',u'admin5',u'admin6',u'admin7',u'admin8',u'admin9',
- u'Admin0',u'Admin1',u'Admin2',u'Admin3',u'Admin4',u'Admin5',u'Admin6',u'Admin7',u'Admin8',u'Admin9']
 ```
 
 ## 安装

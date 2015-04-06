@@ -68,11 +68,10 @@ def start_wyspider(siteurl): # 启动爬虫和fuzz类
 
 	for webdir in url_webdirs: # 生成存在的服务器列表
 		if basedomain in webdir:
-			httpurl = urlparse.urlparse(webdir).scheme+'://'+urlparse.urlparse(webdir).netloc
+			httpurl = urlparse.urlparse(webdir).scheme+'://'+urlparse.urlparse(webdir).netloc+'/'
 			if not possibility_urls.has_key(httpurl):
 				possibility_urls[httpurl] = []
 			possibility_urls[httpurl].append(webdir.rstrip('/')+'/')
-
 
 	possibility_info = {} # 服务端容错处理机制信息
 	for httpurl in possibility_urls.keys(): # 清空无法做出正常判断的服务器
@@ -125,7 +124,7 @@ def start_wyspider(siteurl): # 启动爬虫和fuzz类
 	# ----------------------------------------------------
 	for fuzzfile in fuzzfile_request_set:
 		if basedomain in fuzzfile:
-			httpurl = urlparse.urlparse(fuzzfile).scheme+'://'+urlparse.urlparse(fuzzfile).netloc
+			httpurl = urlparse.urlparse(fuzzfile).scheme+'://'+urlparse.urlparse(fuzzfile).netloc+'/'
 			if not possibility_files.has_key(httpurl):
 				possibility_files[httpurl] = []
 			possibility_files[httpurl].append(fuzzfile)

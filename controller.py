@@ -101,6 +101,7 @@ def start_wyspider(siteurl): # 启动爬虫和fuzz类
 			possibility_files[siteurl].extend(urlgenerator_obj.generator())
 
 	for http_siteurl in fuzzdir_request_set.keys():
+		if not possibility_urls.has_key(http_siteurl): possibility_urls[http_siteurl] = []
 		# 生成向HttpFuzzEnginer传递的目录URL列表
 		request_webdirs = list(set(fuzzdir_request_set[http_siteurl]))
 		refer_to_val = possibility_info[http_siteurl]['refer_to_val']

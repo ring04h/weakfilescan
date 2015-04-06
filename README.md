@@ -36,7 +36,8 @@ python wyspider.py http://wuyun.org php
 | str  | 字符 |
 | date | 日期 |
 
-### 正则引擎类型
+正则引擎类型
+------------
 使用实例
 {re=引擎名称:正则表达式}$
 ``` python
@@ -46,7 +47,8 @@ python wyspider.py http://wuyun.org php
 [u'admin1', u'admin2', u'admin3', u'admin4', u'admin5', u'Admin1', u'Admin2', u'Admin3', u'Admin4', u'Admin5']
 ```
 
-### 整数类规则
+整数类规则
+------------
 | 类型      | 使用实例 |
 | :-------- |:--------|
 | 顺序递进 处理step | {int=series\$2:0-10}\$ |
@@ -62,7 +64,8 @@ python wyspider.py http://wuyun.org php
 | 重叠数字 | {int=overlap#4:0-9}$ |
 > [1111, 2222, 3333, 4444, 5555, 6666, 7777, 8888, 9999]
 
-### 字符类规则
+字符类规则
+------------
 | 类型      | 使用实例 |
 | :-------- |:--------|
 | 顺序递进 处理step | {int=letters\$3:a-g}\$ |
@@ -73,7 +76,8 @@ python wyspider.py http://wuyun.org php
 | 重叠字母 | {str=overlap#4:a-g}$ |
 >  ['aaaa', 'bbbb', 'cccc', 'dddd', 'eeee', 'ffff', 'gggg']
 
-### 日期类规则
+日期类规则
+------------
 | 类型      | 使用实例 |
 | :-------- |:--------|
 | 年 | {date=year:2010-2015}$ |

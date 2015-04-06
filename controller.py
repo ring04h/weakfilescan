@@ -71,7 +71,8 @@ def start_wyspider(siteurl): # 启动爬虫和fuzz类
 			httpurl = urlparse.urlparse(webdir).scheme+'://'+urlparse.urlparse(webdir).netloc
 			if not possibility_urls.has_key(httpurl):
 				possibility_urls[httpurl] = []
-			possibility_urls[httpurl].append(webdir)
+			possibility_urls[httpurl].append(webdir.rstrip('/')+'/')
+
 
 	possibility_info = {} # 服务端容错处理机制信息
 	for httpurl in possibility_urls.keys(): # 清空无法做出正常判断的服务器
@@ -90,7 +91,7 @@ def start_wyspider(siteurl): # 启动爬虫和fuzz类
 			# 根目录 fuzz 对象列表生成
 			possibility_info[siteurl] = siteurl_possibility
 			for root_fuzz_dir in fuzz_webdirs:
-				url = siteurl.rstrip('/')+root_fuzz_dir
+				url = siteurl.rstrip('/')+root_fuzz_dir.rstrip('/')+'/'
 				if not fuzzdir_request_set.has_key(siteurl):
 					fuzzdir_request_set[siteurl] = []
 				fuzzdir_request_set[siteurl].append(url)
@@ -106,7 +107,8 @@ def start_wyspider(siteurl): # 启动爬虫和fuzz类
 		httpfuzz_result = FuzzEnginer(request_webdirs, refer_to_val=refer_to_val).start()
 		for status_code in httpfuzz_result: # 分析多线程fuzz的结果
 			for url in httpfuzz_result[status_code].keys():
-				possibility_urls[http_siteurl].append(url)
+				possibility_urls[http_siteurl].append(url.rstrip('/')+'/')
+		possibility_urls[http_siteurl] = list(set(possibility_urls[http_siteurl]))
 
 	existing_files = {} # 存在的文件列表
 	for httpsite in possibility_urls.keys(): # 处理文件字典，将文件与目录拼接

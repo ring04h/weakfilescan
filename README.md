@@ -31,10 +31,20 @@ python wyspider.py http://wuyun.org php
 ```
 | 规则      |    说明 |
 | :-------- |:--------|
+| re   | 正则引擎 |
 | int  | 整数 |
 | str  | 字符 |
-| re   | 正则引擎 |
 | date | 日期 |
+
+### 正则引擎类型
+使用实例
+{re=引擎名称:正则表达式}$
+``` python
+{re=exrex:[0-9]}$
+[u'0', u'1', u'2', u'3', u'4', u'5', u'6', u'7', u'8', u'9']
+{re=exrex:[aA]dmin[1-5]}$
+[u'admin1', u'admin2', u'admin3', u'admin4', u'admin5', u'Admin1', u'Admin2', u'Admin3', u'Admin4', u'Admin5']
+```
 
 ### 整数类规则
 | 类型      | 使用实例 |
@@ -51,6 +61,17 @@ python wyspider.py http://wuyun.org php
 | :-------- |:--------|
 | 重叠数字 | {int=overlap#4:0-9}$ |
 > [1111, 2222, 3333, 4444, 5555, 6666, 7777, 8888, 9999]
+
+### 字符类规则
+| 类型      | 使用实例 |
+| :-------- |:--------|
+| 顺序递进 处理step | {int=letters\$3:a-g}\$ |
+> ['abc', 'bcd', 'cde', 'def', 'efg']
+
+| 类型      | 使用实例 |
+| :-------- |:--------|
+| 重叠字母 | {str=overlap#4:a-g}$ |
+>  ['aaaa', 'bbbb', 'cccc', 'dddd', 'eeee', 'ffff', 'gggg']
 
 ### 日期类规则
 | 类型      | 使用实例 |
